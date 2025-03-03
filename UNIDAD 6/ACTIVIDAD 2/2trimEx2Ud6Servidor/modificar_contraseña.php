@@ -3,7 +3,7 @@ session_start();
 include('db.php');
 include('UserModel.php');
 
-// Verificar que el usuario esté autenticado
+// Nos aseguramos de que el usuario esté autenticado
 if (!isset($_SESSION['usuario_id'])) {
     header('Location: login.php');
     exit;
@@ -11,19 +11,19 @@ if (!isset($_SESSION['usuario_id'])) {
 
 $usuario_id = $_SESSION['usuario_id'];
 
-// Crear el objeto del modelo de usuario
+// Creamos el objeto del modelo de usuario
 $userModel = new UserModel($conn);
 
-// Verificar si el formulario de cambio de contraseña ha sido enviado
+// Verificamos si el formulario de cambio de contraseña ha sido enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_SESSION['usuario_id']; // Suponiendo que almacenes el ID del usuario en la sesión
+    $id = $_SESSION['usuario_id']; 
     $nueva_contraseña = $_POST['nueva_contraseña'];
 
     // Actualizar la contraseña en la base de datos
     $resultado = $userModel->actualizarContraseña($id, $nueva_contraseña);
 
     if ($resultado) {
-        $_SESSION['mensaje'] = 'Contraseña actualizada correctamente.';
+        $_SESSION['mensaje'] = 'Contraseña actualizada';
         header('Location: panel.php');
         exit;
     } else {
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Obtener el ID del usuario desde la sesión
+// Obtenemos la ID del usuario desde la sesión
 $userId = $_SESSION['usuario_id']; 
 
 ?>

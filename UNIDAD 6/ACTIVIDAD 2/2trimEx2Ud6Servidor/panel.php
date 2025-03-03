@@ -56,8 +56,9 @@ $result = $conn->query($sql);
         </div>
     </nav>
 
-    <section class="container">
-        <h2>Gestión de usuarios</h2>
+    <section class="container mt-5 pt-5">
+        <h2 class="text-center">Gestión de usuarios</h2>
+
 
         <!-- Mostrar mensaje de éxito o error -->
         <?php if (isset($_SESSION['mensaje'])): ?>
